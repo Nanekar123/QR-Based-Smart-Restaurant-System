@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Customer Reviews</title>
+
+<style>
+    .back-btn {
+    position:absolute;
+    top:20px;
+    left:20px;
+    padding:8px 18px;
+    border-radius:25px;
+    background:black;
+    border:2px solid gold;
+    color:gold;
+    text-decoration:none;
+    font-weight:bold;
+}
+
+.back-btn:hover {
+    background:gold;
+    color:black;
+}
+body {
+    background:#0d0d0d;
+    color:gold;
+    font-family:Segoe UI;
+    text-align:center;
+}
+
+h1 {
+    margin-top:20px;
+}
+
+table {
+    width:90%;
+    margin:20px auto;
+    border-collapse:collapse;
+    background:#1a1a1a;
+}
+
+th,td {
+    padding:12px;
+    text-align:center;
+}
+
+th {
+    background:gold;
+    color:black;
+}
+
+tr:nth-child(even){
+    background:#222;
+}
+</style>
+</head>
+
+<body>
+
+<h1>⭐ Customer Reviews</h1>
+<a href="/admin/dashboard" class="back-btn">⬅ Back to Dashboard</a>
+
+<h2>Average Rating: {{ avg|round(1) if avg else 0 }}/5</h2>
+
+<table>
+<tr>
+<th>Order ID</th>
+<th>Table</th>
+<th>Rating</th>
+<th>Review</th>
+<th>Date</th>
+</tr>
+
+{% for r in reviews %}
+<tr>
+<td>#{{ r.order_id }}</td>
+<td>{{ r.table_no }}</td>
+<td>{{ r.rating }} ⭐</td>
+<td>{{ r.review }}</td>
+<td>{{ r.created_at }}</td>
+</tr>
+{% endfor %}
+
+</table>
+
+</body>
+</html>

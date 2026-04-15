@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Admin Dashboard</title>
+
+<style>
+body {
+    margin:0;
+    background:#0d0d0d;
+    color:gold;
+    font-family:Segoe UI;
+}
+
+h1 {
+    text-align:center;
+    padding:20px;
+}
+
+.top-bar {
+    display:flex;
+    justify-content:space-between;
+    padding:20px;
+    flex-wrap: wrap;
+    gap:10px;
+}
+
+.btn {
+    background:linear-gradient(45deg,#d4af37,#ffd700);
+    padding:10px 20px;
+    border-radius:20px;
+    text-decoration:none;
+    color:black;
+    font-weight:bold;
+}
+
+table {
+    width:95%;
+    margin:20px auto;
+    border-collapse:collapse;
+    background:#1a1a1a;
+    border-radius:10px;
+}
+
+th,td {
+    padding:12px;
+    text-align:center;
+}
+
+th {
+    background:gold;
+    color:black;
+}
+
+select {
+    padding:5px;
+    border-radius:10px;
+}
+
+.update-btn {
+    margin-top:5px;
+    padding:6px 12px;
+    border-radius:15px;
+    border:none;
+    background:gold;
+    cursor:pointer;
+}
+
+/* 🔔 TOAST */
+#toast {
+    position:fixed;
+    bottom:20px;
+    right:20px;
+    background:gold;
+    color:black;
+    padding:15px;
+    border-radius:10px;
+    display:none;
+}
+</style>
+
+</head>
+
+<body>
+
+<h1>📊 Admin Dashboard</h1>
+
+<div class="top-bar">
+    <a href="/admin/menu" class="btn">🍽 Manage Inventory</a>
+    <a href="/admin/analytics" class="btn">📊 Analytics</a>
+    <a href="/admin/reviews" class="btn">⭐ Reviews</a>
+    <a href="/admin/logout" class="btn">🚪 Logout</a>
+</div>
+
+<h2 style="text-align:center;">🧾 Orders</h2>
+
+<table>
+<tr>
+<th>ID</th>
+<th>Table</th>
+<th>Items</th>
+<th>Total</th>
+<th>Status</th>
+<th>Action</th>
+</tr>
+
+{% for order in orders %}
+<tr>
+<td>#{{ order.id }}</td>
+<td>{{ order.table_no }}</td>
+
+<td>
+{% for item in order.order_items %}
+{{ item.item_name }} x {{ item.quantity }}<br>
+{% endfor %}
+</td>
+
+<td>₹ {{ order.total }}</td>
+<td>{{ order.status }}</td>
+
+<td>
+<form method="POST" action="/admin/update_status/{{ order.id }}">
+<select name="status">
+<option {% if order.status=='Received' %}selected{% endif %}>Received</option>
+<option {% if order.status=='Preparing' %}selected{% endif %}>Preparing</option>
+<option {% if order.status=='Ready' %}selected{% endif %}>Ready</option>
+<option {% if order.status=='Delivered' %}selected{% endif %}>Delivered</option>
+</select>
+<br>
+<button class="update-btn">Update</button>
+</form>
+</td>
+
+</tr>
+{% endfor %}
+</table>
+
+<!-- 🔔 Toast -->
+<div id="toast"></div>
+
+<script>
+// Toast
+function showToast(msg){
+    let t = document.getElementById("toast");
+    t.innerText = msg;
+    t.style.display = "block";
+    setTimeout(()=> t.style.display="none", 3000);
+}
+
+// 🔔 CHECK NEW ORDERS
+setInterval(()=>{
+    fetch('/admin/new_orders_count')
+    .then(res=>res.json())
+    .then(data=>{
+        if(data.count > 0){
+            showToast("🔔 New Order Received!");
+            setTimeout(()=>location.reload(),2000);
+        }
+    });
+},5000);
+</script>
+
+</body>
+</html>

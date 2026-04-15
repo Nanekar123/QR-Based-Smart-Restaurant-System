@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Give Review</title>
+
+<style>
+body {
+    background:#0d0d0d;
+    color:gold;
+    font-family:Segoe UI;
+    text-align:center;
+}
+
+.container {
+    margin-top:50px;
+}
+
+/* STAR RATING */
+.star-rating {
+    direction: rtl;
+    display: inline-block;
+    font-size: 35px;
+}
+
+.star-rating input {
+    display: none;
+}
+
+.star-rating label {
+    color: #444;
+    cursor: pointer;
+}
+
+.star-rating label:hover,
+.star-rating label:hover ~ label {
+    color: gold;
+}
+
+.star-rating input:checked ~ label {
+    color: gold;
+}
+
+/* TEXTAREA */
+textarea {
+    width:300px;
+    height:100px;
+    border-radius:10px;
+    border:none;
+    padding:10px;
+}
+
+/* BUTTON */
+.btn {
+    margin-top:15px;
+    padding:10px 20px;
+    border:none;
+    border-radius:20px;
+    background:gold;
+    color:black;
+    font-weight:bold;
+    cursor:pointer;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>⭐ Rate Your Order</h2>
+
+<form method="POST" action="/submit_review/{{ order_id }}">
+
+    <div class="star-rating">
+        <input type="radio" name="rating" value="5" id="star5"><label for="star5">★</label>
+        <input type="radio" name="rating" value="4" id="star4"><label for="star4">★</label>
+        <input type="radio" name="rating" value="3" id="star3"><label for="star3">★</label>
+        <input type="radio" name="rating" value="2" id="star2"><label for="star2">★</label>
+        <input type="radio" name="rating" value="1" id="star1" required><label for="star1">★</label>
+    </div>
+
+    <br><br>
+
+    <textarea name="review" placeholder="Write your review..." required></textarea>
+
+    <br><br>
+
+    <button class="btn">Submit Review</button>
+
+</form>
+
+</div>
+
+</body>
+</html>

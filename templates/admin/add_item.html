@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Menu Item</title>
+
+    <style>
+        body {
+            background: #0d0d0d;
+            color: gold;
+            font-family: Arial;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .form-container {
+            background: #1a1a1a;
+            padding: 30px;
+            border-radius: 15px;
+            width: 350px;
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.4);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 20px;
+            border: none;
+            background: #333;
+            color: white;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(45deg, #d4af37, #ffd700);
+            border: none;
+            border-radius: 25px;
+            color: black;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: gold;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="form-container">
+
+<h2>➕ Add Menu Item</h2>
+
+<form method="POST" enctype="multipart/form-data">
+
+    <input name="name" placeholder="Item Name" required>
+
+    <input type="number" name="price" placeholder="Price" required>
+
+    <!-- CATEGORY -->
+    <select name="category" required>
+        <option value="">Select Category</option>
+        <option value="starter">Starter</option>
+        <option value="main">Main Course</option>
+        <option value="dessert">Dessert</option>
+    </select>
+
+    <!-- SUB CATEGORY -->
+    <select name="sub_category">
+        <option value="">Select Sub Category (Only for Main)</option>
+        <option value="indian">🇮🇳 Indian</option>
+        <option value="italian">🍝 Italian</option>
+        <option value="fastfood">🍔 Fast Food</option>
+        <option value="rice">🍚 Rice</option>
+    </select>
+
+    <input type="file" name="image">
+
+    <button type="submit">Add Item</button>
+
+</form>
+
+</div>
+
+</body>
+</html>

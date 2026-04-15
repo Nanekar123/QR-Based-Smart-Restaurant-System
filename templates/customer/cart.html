@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Your Cart | Smart Restaurant</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background: #0d0d0d;
+            color: gold;
+        }
+
+        .back-btn {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            padding: 8px 18px;
+            border-radius: 25px;
+            background: black;
+            border: 2px solid gold;
+            color: gold;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .back-btn:hover {
+            background: gold;
+            color: black;
+        }
+
+        .cart-container {
+            max-width: 900px;
+            margin: 80px auto;
+            padding: 20px;
+        }
+
+        .cart-title {
+            text-align: center;
+            font-size: 32px;
+            margin-bottom: 30px;
+        }
+
+        .cart-items {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .cart-card {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #1a1a1a;
+            padding: 15px 20px;
+            border-radius: 15px;
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.2);
+        }
+
+        .cart-card:hover {
+            box-shadow: 0 0 25px rgba(255, 215, 0, 0.5);
+        }
+
+        .cart-info h3 {
+            margin: 0;
+        }
+
+        .qty {
+            color: #ccc;
+            font-size: 14px;
+        }
+
+        .cart-price {
+            font-size: 18px;
+            color: #fff;
+        }
+
+        .cart-summary {
+            text-align: center;
+            margin-top: 30px;
+            padding: 20px;
+            background: #1a1a1a;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+        }
+
+        .cart-summary h3 {
+            margin: 0;
+            color: #ccc;
+        }
+
+        .cart-summary h2 {
+            margin-top: 10px;
+            font-size: 28px;
+        }
+
+        .checkout-btn {
+            display: block;
+            width: fit-content;
+            margin: 30px auto;
+            padding: 12px 30px;
+            border-radius: 30px;
+            background: linear-gradient(45deg, #d4af37, #ffd700);
+            color: black;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .checkout-btn:hover {
+            background: gold;
+        }
+
+        .empty-cart {
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .empty-cart img {
+            width: 200px;
+            margin-bottom: 20px;
+        }
+
+        .menu-btn {
+            padding: 10px 25px;
+            border-radius: 25px;
+            border: 2px solid gold;
+            background: black;
+            color: gold;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .menu-btn:hover {
+            background: gold;
+            color: black;
+        }
+    </style>
+
+</head>
+
+<body>
+
+<a href="/menu" class="back-btn">⬅ Back to Menu</a>
+
+<div class="cart-container">
+
+    <h2 class="cart-title">🛒 Your Cart</h2>
+
+    {% if cart %}
+
+    <div class="cart-items">
+        {% for name, item in cart.items() %}
+        <div class="cart-card">
+            <div class="cart-info">
+                <h3>{{ name }}</h3>
+                <p class="qty">Quantity: {{ item.qty }}</p>
+            </div>
+            <div class="cart-price">
+                ₹ {{ item.price * item.qty }}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <div class="cart-summary">
+        <h3>Total Amount</h3>
+        <h2>₹ {{ total }}</h2>
+    </div>
+
+    <a href="/checkout" class="checkout-btn">
+        Proceed to Checkout →
+    </a>
+
+    {% else %}
+
+    <div class="empty-cart">
+        <img src="{{ url_for('static', filename='uploads/empty-cart.png') }}" alt="Empty Cart">
+        <p>Your cart is empty 😕</p>
+
+        <a href="/menu">
+            <button class="menu-btn">Browse Menu</button>
+        </a>
+    </div>
+
+    {% endif %}
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="UTF-8">
+    <title>Smart Restaurant</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+    <!-- Admin Login Button -->
+    <div class="admin-login">
+        <a href="/admin/login">Admin Login</a>
+    </div>
+
+    <!-- Main Container -->
+    <div class="container">
+        <h1>🍽 Welcome to Smart Restaurant</h1>
+        <p>Scan QR & Order Easily</p>
+
+        <!-- QR Section -->
+        <div class="qr-box">
+            <img src="{{ url_for('static', filename='images/qr.png') }}" alt="QR Code">
+            <p>Scan this QR to view menu</p>
+        </div>
+
+        <!-- Buttons -->
+        <div class="btn-group">
+            <a href="/menu" class="btn">View Menu</a>
+        </div>
+    </div>
+
+</body>
+</html>

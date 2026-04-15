@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Item</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background: #0d0d0d;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: gold;
+        }
+
+        .container {
+            background: #1a1a1a;
+            padding: 40px;
+            border-radius: 20px;
+            width: 350px;
+            text-align: center;
+            box-shadow: 0 0 25px rgba(255, 215, 0, 0.3);
+        }
+
+        h2 {
+            margin-bottom: 25px;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border-radius: 25px;
+            border: none;
+            outline: none;
+            background: #333;
+            color: #fff;
+        }
+
+        input::placeholder {
+            color: #aaa;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 15px;
+            border: none;
+            border-radius: 25px;
+            background: linear-gradient(45deg, #d4af37, #ffd700);
+            color: black;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: gold;
+            transform: scale(1.05);
+        }
+
+        .back-btn {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            padding: 8px 18px;
+            border-radius: 25px;
+            background: black;
+            border: 2px solid gold;
+            color: gold;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .back-btn:hover {
+            background: gold;
+            color: black;
+        }
+    </style>
+
+</head>
+
+<body>
+
+<a href="/admin/menu" class="back-btn">⬅ Back</a>
+
+<div class="container">
+
+    <h2>✏️ Edit Menu Item</h2>
+
+    <form method="POST" enctype="multipart/form-data">
+
+        <input name="name" value="{{ item.name }}" required>
+
+        <input name="price" value="{{ item.price }}" required>
+
+        <!-- CATEGORY -->
+        <select name="category" required>
+            <option value="starter" {% if item.category=='starter' %}selected{% endif %}>Starter</option>
+            <option value="main" {% if item.category=='main' %}selected{% endif %}>Main Course</option>
+            <option value="dessert" {% if item.category=='dessert' %}selected{% endif %}>Dessert</option>
+        </select>
+
+        <!-- SUB CATEGORY -->
+        <input name="sub_category" placeholder="Sub Category (optional)" value="{{ item.sub_category or '' }}">
+
+        <!-- IMAGE -->
+        <input type="file" name="image">
+
+        <button type="submit">Update Item</button>
+
+    </form>
+
+</div>
+
+</body>
+</html>

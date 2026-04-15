@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Checkout | Smart Restaurant</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background: #0d0d0d;
+            color: gold;
+        }
+
+        .back-btn {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            padding: 8px 18px;
+            border-radius: 25px;
+            background: black;
+            border: 2px solid gold;
+            color: gold;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .back-btn:hover {
+            background: gold;
+            color: black;
+        }
+
+        .checkout-container {
+            max-width: 900px;
+            margin: 80px auto;
+            padding: 20px;
+        }
+
+        .checkout-title {
+            text-align: center;
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        .info-msg {
+            text-align: center;
+            color: #ccc;
+            margin-bottom: 20px;
+            font-size: 15px;
+        }
+
+        .table-info {
+            text-align: center;
+            font-size: 18px;
+            margin-bottom: 30px;
+            color: #ccc;
+        }
+
+        .order-summary {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .summary-card {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #1a1a1a;
+            padding: 15px 20px;
+            border-radius: 15px;
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.2);
+        }
+
+        .summary-card:hover {
+            box-shadow: 0 0 25px rgba(255, 215, 0, 0.5);
+        }
+
+        .summary-card h4 {
+            margin: 0;
+        }
+
+        .summary-card p {
+            margin: 5px 0 0;
+            font-size: 14px;
+            color: #ccc;
+        }
+
+        .item-total {
+            color: #fff;
+            font-size: 18px;
+        }
+
+        .total-box {
+            text-align: center;
+            margin-top: 30px;
+            padding: 20px;
+            background: #1a1a1a;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+        }
+
+        .total-box h3 {
+            margin: 0;
+            color: #ccc;
+        }
+
+        .total-box h2 {
+            margin-top: 10px;
+            font-size: 30px;
+        }
+
+        .btn-group {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .place-order-btn {
+            padding: 12px 30px;
+            border-radius: 30px;
+            background: linear-gradient(45deg, #d4af37, #ffd700);
+            color: black;
+            border: none;
+            font-weight: bold;
+            font-size: 16px;
+            cursor: pointer;
+            margin: 10px;
+        }
+
+        .place-order-btn:hover {
+            background: gold;
+        }
+
+        .secondary-btn {
+            padding: 10px 25px;
+            border-radius: 30px;
+            background: transparent;
+            color: gold;
+            border: 2px solid gold;
+            font-weight: bold;
+            text-decoration: none;
+            margin: 10px;
+        }
+
+        .secondary-btn:hover {
+            background: gold;
+            color: black;
+        }
+    </style>
+
+</head>
+
+<body>
+
+<a href="/cart" class="back-btn">⬅ Back to Cart</a>
+
+<div class="checkout-container">
+
+    <h2 class="checkout-title">✅ Checkout</h2>
+
+    <div class="info-msg">
+        🧾 Your order will be placed now. You can continue adding items later.  
+        💳 Payment will be done at the final billing stage.
+    </div>
+
+    <div class="table-info">
+        📍 Table No: <strong>{{ table_no }}</strong>
+    </div>
+
+    <div class="order-summary">
+        {% for name, item in cart.items() %}
+        <div class="summary-card">
+            <div>
+                <h4>{{ name }}</h4>
+                <p>Quantity: {{ item.qty }}</p>
+            </div>
+            <div class="item-total">
+                ₹ {{ item.price * item.qty }}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <div class="total-box">
+        <h3>Current Order Total</h3>
+        <h2>₹ {{ total }}</h2>
+    </div>
+
+    <form method="POST">
+        <div class="btn-group">
+            <button type="submit" class="place-order-btn">
+                Place Order 🚀
+            </button>
+
+            <a href="/menu" class="secondary-btn">
+                ➕ Add More Items
+            </a>
+        </div>
+    </form>
+
+</div>
+
+</body>
+</html>

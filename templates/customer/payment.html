@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Payment | Smart Restaurant</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background: #0d0d0d;
+            color: gold;
+        }
+
+        .back-btn {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            padding: 8px 18px;
+            border-radius: 25px;
+            background: black;
+            border: 2px solid gold;
+            color: gold;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .back-btn:hover {
+            background: gold;
+            color: black;
+        }
+
+        .payment-container {
+            max-width: 500px;
+            margin: 100px auto;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .payment-title {
+            font-size: 26px;
+            margin-bottom: 20px;
+        }
+
+        .payment-card {
+            background: #1a1a1a;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 0 25px rgba(255, 215, 0, 0.3);
+        }
+
+        .amount-text {
+            color: #ccc;
+            margin-bottom: 5px;
+        }
+
+        .amount-value {
+            font-size: 36px;
+            margin-bottom: 25px;
+        }
+
+        .payment-form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        select {
+            padding: 12px;
+            border-radius: 25px;
+            border: none;
+            background: #333;
+            color: #fff;
+            font-size: 14px;
+            outline: none;
+        }
+
+        select option {
+            color: black;
+        }
+
+        .pay-btn {
+            margin-top: 10px;
+            padding: 12px;
+            border-radius: 25px;
+            background: linear-gradient(45deg, #d4af37, #ffd700);
+            color: black;
+            border: none;
+            font-weight: bold;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .pay-btn:hover {
+            background: gold;
+            transform: scale(1.05);
+        }
+    </style>
+
+</head>
+
+<body>
+
+<!-- ✅ FIXED BACK BUTTON -->
+<a href="/checkout" class="back-btn">⬅ Back to Checkout</a>
+
+<div class="payment-container">
+
+    <h2 class="payment-title">💳 Payment for Order #{{ order.id }}</h2>
+
+    <div class="payment-card">
+
+        <p class="amount-text">Total Amount</p>
+        <h1 class="amount-value">₹ {{ order.total }}</h1>
+
+        <form method="POST" class="payment-form">
+
+            <label>Select Payment Method</label>
+
+            <select name="payment_method" required>
+                <option value="" disabled selected>Choose Method</option>
+                <option value="Cash">Cash</option>
+                <option value="UPI">UPI</option>
+                <option value="Card">Card</option>
+                <option value="Net Banking">Net Banking</option>
+            </select>
+
+            <button type="submit" class="pay-btn">
+                Pay ₹ {{ order.total }}
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+</body>
+</html>

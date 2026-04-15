@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Payment Successful | Smart Restaurant</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background: #0d0d0d;
+            color: gold;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+        }
+
+        .success-container {
+            background: #1a1a1a;
+            padding: 40px;
+            border-radius: 20px;
+            width: 400px;
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.4);
+            animation: fadeIn 0.8s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {opacity: 0; transform: translateY(20px);}
+            to {opacity: 1; transform: translateY(0);}
+        }
+
+        .success-icon {
+            font-size: 60px;
+            margin-bottom: 15px;
+        }
+
+        .success-title {
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+
+        .success-card {
+            background: #222;
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 25px;
+        }
+
+        .success-card p {
+            margin: 8px 0;
+            color: #ddd;
+        }
+
+        .btn {
+            display: inline-block;
+            margin: 10px 5px;
+            padding: 12px 25px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .menu-btn {
+            background: linear-gradient(45deg, #d4af37, #ffd700);
+            color: black;
+        }
+
+        .menu-btn:hover {
+            background: gold;
+        }
+
+        .track-btn {
+            background: black;
+            border: 2px solid gold;
+            color: gold;
+        }
+
+        .track-btn:hover {
+            background: gold;
+            color: black;
+        }
+    </style>
+
+</head>
+
+<body>
+
+<div class="success-container">
+
+    <div class="success-icon">✅</div>
+
+    <h2 class="success-title">Payment Successful</h2>
+
+    <div class="success-card">
+        <p><strong>Order ID:</strong> {{ order_id }}</p>
+        <p><strong>Amount Paid:</strong> ₹ {{ amount }}</p>
+        <p><strong>Payment Method:</strong> {{ method }}</p>
+    </div>
+
+    <a href="{{ url_for('menu') }}" class="btn menu-btn">
+        🍽 Back to Menu
+    </a>
+
+</div>
+
+</body>
+</html>

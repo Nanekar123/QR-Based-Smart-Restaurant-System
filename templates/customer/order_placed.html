@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Order Placed</title>
+
+    <style>
+        body {
+            background: #0d0d0d;
+            color: gold;
+            font-family: 'Segoe UI', sans-serif;
+            text-align: center;
+            padding-top: 100px;
+        }
+
+        .box {
+            background: #1a1a1a;
+            padding: 40px;
+            border-radius: 20px;
+            display: inline-block;
+            box-shadow: 0 0 20px rgba(255,215,0,0.3);
+        }
+
+        h2 {
+            margin-bottom: 10px;
+        }
+
+        p {
+            color: #ccc;
+            margin-bottom: 30px;
+        }
+
+        .btn {
+            display: inline-block;
+            margin: 10px;
+            padding: 12px 25px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .primary {
+            background: linear-gradient(45deg, #d4af37, #ffd700);
+            color: black;
+        }
+
+        .secondary {
+            border: 2px solid gold;
+            color: gold;
+        }
+
+        .secondary:hover {
+            background: gold;
+            color: black;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="box">
+    <h2>✅ Order Placed Successfully!</h2>
+
+    <p>Your order is being prepared 👨‍🍳</p>
+
+    <p>Order ID: <strong>{{ order_id }}</strong></p>
+
+    <a href="/menu" class="btn primary">➕ Add More Items</a>
+
+    <a href="/order_status" class="btn secondary">📍 Track Order</a>
+
+    <a href="/final_bill" class="btn secondary">🧾 View Final Bill</a>
+</div>
+
+</body>
+</html>
