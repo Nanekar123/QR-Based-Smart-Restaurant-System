@@ -109,7 +109,7 @@ http://127.0.0.1:5000/
 ## 👩‍💻 Author
 
 **Supriya Nanekar**
-📧 [your-email@example.com](mailto:your-Supriya.nanekar24@pcu.edu.in)
+📧 [Supriya.nanekar24@pcu.edu.in)](mailto:your-Supriya.nanekar24@pcu.edu.in)
 🔗 GitHub: https://github.com/Nanekar123
 
 ---
